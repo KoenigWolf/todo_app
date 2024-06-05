@@ -1,28 +1,39 @@
+<?php
+session_start();
+
+$users = [
+    'user1' => 'password1',
+    'user2' => 'password2',
+];
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    if (isset($users[$username]) && $users[$username] == $password) {
+        $_SESSION['username'] = $username;
+        header('Location: welcome.php');
+        exit();
+    } else {
+        $error_message = "Invalid username or password.";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo App</title>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>My Website</h1>
-        <nav>
-            <ul>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="about.php">About</a></li>
-                <li><a href="contact.php">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <h1>Welcome to Todo App</h1>
-        <p>This is a simple Todo application built with PHP and MySQL.</p>
-    </main>
-
     <div class="login-container">
         <h2>Login</h2>
+        <?php if (isset($error_message)): ?>
+            <p style="color: red;"><?php echo $error_message; ?></p>
+        <?php endif; ?>
         <form action="login.php" method="post">
             <div class="form-group">
                 <label for="username">Username:</label>
@@ -35,9 +46,5 @@
             <button type="submit">Login</button>
         </form>
     </div>
-
-    <footer>
-        <p>&copy; 2023 My Website</p>
-    </footer>
 </body>
 </html>
