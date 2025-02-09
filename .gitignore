@@ -1,5 +1,60 @@
-.DS_Store
-node_modules/
-vendor/
+# 環境設定ファイル
 .env
+.env.backup
+.env.production
 
+# Composerの依存関係
+/vendor/
+composer.lock
+
+# PHPUnit
+.phpunit.result.cache
+.phpunit.cache
+
+# IDE設定
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+
+# OS生成ファイル
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ログファイル
+/logs/*
+!/logs/.gitkeep
+
+# キャッシュファイル
+/cache/*
+!/cache/.gitkeep
+
+# アップロードされたファイル
+/public/uploads/*
+!/public/uploads/.gitkeep
+
+# 一時ファイル
+*.log
+*.sql
+*.sqlite
+*.sqlite3
+.php_cs.cache
+.php-cs-fixer.cache
+
+# バックアップファイル
+*.bak
+*.swp
+*.swo
+*~
+
+# 設定ファイル
+auth.json
+npm-debug.log
+yarn-debug.log*
+yarn-error.log*
